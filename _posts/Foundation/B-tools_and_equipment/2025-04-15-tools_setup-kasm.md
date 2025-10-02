@@ -70,32 +70,29 @@ code .
 
 ---
 
-### After restarting a session
+### Version Checks (Optional)
 
-Open a Terminal
+Open a new Terminal
 
-Your data persists even after workspace restarts or destroys. Simply relaunch your environment and run:
+```bash
+python --version
+pip --version
+ruby -v
+bundle -v
+gem --version
+git config --global --list
+```
+
+#### Starting a session to work in VSCode
+
+Open a new Terminal
+
+Each time you open a new Terminal to work, run:
 
 ```bash
 cd opencs/student
-source venv/bin/activate
+source venv/bin/activate # activate Python virtual environment
 code .
-```
-
----
-
-### Version Checks (Optional)
-
-Open a Terminal
-
-```bash
-ruby -v
-bundle -v
-python --version
-jupyter --version
-git config --global --list
-jupyter kernelspec list
-pip list
 ```
 
 ---

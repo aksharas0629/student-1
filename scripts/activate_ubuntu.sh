@@ -42,8 +42,14 @@ sudo chmod -R 777 "$GEM_HOME"
 sudo gem install bundler jekyll benchmark openssl zlib racc bigdecimal drb unicode-display_width \
                  logger etc fileutils ipaddr mutex_m ostruct rss strscan stringio time
 
-# 3.  Prompt and setGitHub config
-read -p "Enter your Git username: " GIT_USER_NAME
-read -p "Enter your Git email: " GIT_USER_EMAIL
-git config --global user.name "$GIT_USER_NAME"
-git config --global user.email "$GIT_USER_EMAIL"
+# 3. Python3 is Python
+source $BASHRC
+python --version
+pip --version
+ruby -v
+bundle -v
+gem --version
+
+# Restart the terminal
+echo "All tools are set up successfully!"
+echo "Please start a new terminal or run 'source $BASHRC' to apply the changes."

@@ -66,7 +66,7 @@ flowchart TD
 
 - `wsl --help`, `wsl -l -o`, `wsl -l -v`, `wsl --shutdown`, `wsl --uregister`
 
-### WSL instll
+### WSL install
 
 1. Open Windows Terminal and Pin to Taskbar. All of these commands are activated from Windows Shell (`C:\`)
 
@@ -104,7 +104,7 @@ flowchart TD
 
 Open Terminal by right clicking on Terminal in Taskbar and selecting Ubuntu 24.04
 
-Run these commands to set up your Uubuntu developer tools for the first time.
+Run these commands to set up your Ubuntu developer tools for the first time.
 
 ```bash
 mkdir opencs
@@ -112,9 +112,8 @@ cd opencs
 git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
 git clone https://github.com/Open-Coding-Society/student.git
 cd student/
-./scripts/activate_ubuntu.sh # prompts for root password
+./scripts/activate_ubuntu.sh # prompts for your recently created WSL Ubuntu password
 ./scripts/activate.sh # prompts for Git UID and Personal Email
-./scripts/activate.sh
 ./scripts/venv.sh
 ```
 
@@ -125,13 +124,12 @@ Open Terminal by right clicking on Terminal in Taskbar and selecting Ubuntu 24.0
 Run these commands to verify your system setup and check installed tools.
 
 ```bash
+python --version
+pip --version
 ruby -v
 bundle -v
-python --version
-jupyter --version
+gem --version
 git config --global --list
-jupyter kernelspec list
-pip list
 ```
 
 #### Restarting a terminal
