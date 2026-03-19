@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Titanic Survival Predictor</title>
+<style>
+    body { 
+    font-family: Arial; 
+    margin: 40px; 
+
+    /* Background image */
+    background-image: url("{{ url_for('static', filename='titanic.png') }}");
+    background-size: cover;       /* Cover the entire page */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* Don’t tile */
+    background-attachment: fixed; /* Image stays in place */
+    color: #000;                  /* Make text white so it’s visible */
+}
+
+/* Optional: style form and result box */
+label { display: inline-block; width: 120px; margin-bottom: 10px; }
+input[type="text"], input[type="number"] { width: 150px; padding: 5px; }
+input[type="submit"] { padding: 8px 15px; margin-top: 10px; }
+.result { 
+    margin-top: 20px; 
+    padding: 15px; 
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent box for readability */
+    border-radius: 5px; 
+    color: #fff;
+}
+
+</style>
+</head>
+<body>
+<h1>Titanic Survival Predictor</h1>
+<form method="post" action="/predict">
+    <label for="pclass">Pclass (1-3):</label>
+    <input type="number" name="pclass" value="{{ form_values.get('pclass',3) }}" min="1" max="3"><br>
+
+    <label for="sex">Sex (0=female,1=male):</label>
+    <input type="number" name="sex" value="{{ form_values.get('sex','1') }}" min="0" max="1"><br>
+
+    <label for="age">Age:</label>
+    <input type="number" name="age" value="{{ form_values.get('age',22) }}"><br>
+
+    <label for="sibsp">SibSp:</label>
+    <input type="number" name="sibsp" value="{{ form_values.get('sibsp',1) }}"><br>
+
+    <label for="parch">Parch:</label>
+    <input type="number" name="parch" value="{{ form_values.get('parch',0) }}"><br>
+
+    <label for="fare">Fare:</label>
+    <input type="number" step="0.01" name="fare" value="{{ form_values.get('fare',7.25) }}"><br>
+
+    <label for="alone">Alone (0=False,1=True):</label>
+    <input type="number" name="alone" value="{{ form_values.get('alone',0) }}" min="0" max="1"><br>
+
+    <label for="embarked_C">Embarked C:</label>
+    <input type="number" name="embarked_C" value="{{ form_values.get('embarked_C',0) }}" min="0" max="1"><br>
+
+    <label for="embarked_Q">Embarked Q:</label>
+    <input type="number" name="embarked_Q" value="{{ form_values.get('embarked_Q',0) }}" min="0" max="1"><br>
+
+    <label for="embarked_S">Embarked S:</label>
+    <input type="number" name="embarked_S" value="{{ form_values.get('embarked_S',1) }}" min="0" max="1"><br>
+
+    <input type="submit" value="Predict">
+</form>
+
+{% if result %}
+<div class="result">
+    <h2>Prediction:</h2>
+    {% if result.get('error') %}
+        <p style="color:red;">Error: {{ result['error'] }}</p>
+    {% else %}
+        <p>Survival Probability: {{ result['survival_probability']*100 }}%</p>
+        <p>Death Probability: {{ result['death_probability']*100 }}%</p>
+    {% endif %}
+</div>
+{% endif %}
+</body>
+</html>
